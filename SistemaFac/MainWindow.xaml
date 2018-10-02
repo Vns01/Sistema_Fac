@@ -1,12 +1,207 @@
-﻿<Window x:Class="SistemaFac.MainWindow"
+﻿<Controls:MetroWindow x:Class="SistemaFac.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:Controls="http://metro.mahapps.com/winfx/xaml/controls"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
+        xmlns:system="clr-namespace:System;assembly=mscorlib"
         xmlns:local="clr-namespace:SistemaFac"
-        mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
         
+        mc:Ignorable="d"
+        Title="Sistema Fac" MinHeight="700"  MinWidth="800" ShowTitleBar="True" ShowIconOnTitleBar="True" WindowStartupLocation="CenterScreen"
+        BorderThickness="0" GlowBrush="Black" ResizeMode="CanResizeWithGrip" Height="645.6"              >
+
+    <Controls:MetroWindow.LeftWindowCommands>
+        <Controls:WindowCommands>
+            <Button Click="Button_Click">
+                <iconPacks:PackIconMaterial Width="10" Height="10" Kind="Printer"></iconPacks:PackIconMaterial>
+            </Button>
+        </Controls:WindowCommands>
+    </Controls:MetroWindow.LeftWindowCommands>
+
+    <Controls:MetroWindow.RightWindowCommands>
+        <Controls:WindowCommands>
+            <Button x:Name="btnGerenciamento" Content="Gerenciamento" Click="btnGerenciamento_Click" ToolTip="Gerenciar cadastros"></Button>
+        </Controls:WindowCommands>
+    </Controls:MetroWindow.RightWindowCommands>
+
+    <Grid>
+      <Grid.RowDefinitions>
+            <RowDefinition Height="345"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+       </Grid.RowDefinitions>
+        <Controls:MetroAnimatedTabControl TabStripPlacement="top"  Controls:TabControlHelper.Underlined="TabItems">
+            <Controls:MetroTabItem Header="FAC">
+                <Grid Margin="10">
+                    <Controls:MetroAnimatedTabControl Controls:TabControlHelper.UnderlineBrush="White" Controls:TabControlHelper.Underlined="TabItems" Grid.Row="0" TabStripPlacement="Left" Margin="6,0,-6.4,0.4">
+                        <Controls:MetroTabItem Header="Empresa" ToolTip="Definir uma Empresa para processar os dados">
+                            <Grid Margin="10,5,10,5">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="2"></RowDefinition>
+                                    <RowDefinition Height="40"></RowDefinition>
+                                    <RowDefinition Height="2"></RowDefinition>
+                                    <RowDefinition Height="40"></RowDefinition>
+                                    <RowDefinition Height="2"></RowDefinition>
+                                    <RowDefinition Height="40"></RowDefinition>
+                                    <RowDefinition Height="2"></RowDefinition>
+                                    <RowDefinition Height="40"></RowDefinition>
+                                    <RowDefinition Height="2"></RowDefinition>
+                                    <RowDefinition Height="40"></RowDefinition>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="5"></ColumnDefinition>
+                                    <ColumnDefinition Width="*"></ColumnDefinition>
+                                    <ColumnDefinition Width="5"></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                                               
+                                <ComboBox x:Name="cboxExibicaoEmpresa" ToolTip="Selecione a Empresa" HorizontalContentAlignment="Center" Controls:TextBoxHelper.ClearTextButton="True" 
+                                          Controls:TextBoxHelper.Watermark="Empresa" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="3" VerticalAlignment="Center" SelectionChanged="cboxExibicaoEmpresa_SelectionChanged" >
+                                    <ComboBoxItem>Teste</ComboBoxItem>
+                                    <ComboBoxItem>teste2</ComboBoxItem>
+                                    <ComboBoxItem></ComboBoxItem>
+                                    <ComboBoxItem></ComboBoxItem>
+                                </ComboBox>
+                                <ComboBox ToolTip="Selecione Código Administrativo do Contrato" HorizontalContentAlignment="Center" Controls:TextBoxHelper.ClearTextButton="True"
+                                          Controls:TextBoxHelper.Watermark="Código Administrativo do Contrato" Grid.Column="0
+                                          " Grid.Row="3" Grid.ColumnSpan="3" VerticalAlignment="Center">
+                                    <ComboBoxItem>Teste</ComboBoxItem>
+                                    <ComboBoxItem>teste2</ComboBoxItem>
+                                    <ComboBoxItem></ComboBoxItem>
+                                    <ComboBoxItem></ComboBoxItem>
+
+                                </ComboBox>
+                                <ComboBox ToolTip="Selecione Número do cartão" HorizontalContentAlignment="Center" VerticalAlignment="Center" Controls:TextBoxHelper.ClearTextButton="True"
+                                          Controls:TextBoxHelper.Watermark="Número do Cartão" Grid.Column="0
+                                          " Grid.Row="5" Grid.ColumnSpan="3" > 
+                                    <ComboBoxItem>Teste</ComboBoxItem>
+                                    <ComboBoxItem>teste2</ComboBoxItem>
+                                    <ComboBoxItem></ComboBoxItem>
+                                    <ComboBoxItem></ComboBoxItem>
+                                </ComboBox>
+                                <StackPanel Grid.Row="7" Grid.Column="0"  Grid.ColumnSpan="3" VerticalAlignment="Center" HorizontalAlignment="Center" Orientation="Horizontal">
+                                    <TextBox x:Name="txboxExibicaoNumContrato" IsEnabled="False" ToolTip="Número do Contrato" MinWidth="100" VerticalAlignment="Center" TextAlignment="Center" Controls:TextBoxHelper.Watermark="Nº do Contrato"></TextBox>
+                                    <TextBox x:Name="txboxExibicaoDr" IsEnabled="False" ToolTip="DR" MinWidth="30" Margin="10,0,0,0" VerticalAlignment="Center" TextAlignment="Center" Controls:TextBoxHelper.Watermark="DR"></TextBox>
+                                    <TextBox x:Name="txboxExibicaoCodSto" IsEnabled="False" ToolTip="Código STO" MinWidth="100" Margin="10,0,0,0" VerticalAlignment="Center" TextAlignment="Center" Controls:TextBoxHelper.Watermark="Código STO"></TextBox>
+                                    <TextBox x:Name="txboxExibicaoCepOrigem" IsEnabled="False" ToolTip="CEP Origem" MinWidth="100" Margin="10,0,0,0" VerticalAlignment="Center" TextAlignment="Center" Controls:TextBoxHelper.Watermark="CEP Origem"></TextBox>
+                                    <TextBox x:Name="txboxExibicaoCepDestino" IsEnabled="False" ToolTip="CEP Destino" MinWidth="100" Margin="10,0,0,0" VerticalAlignment="Center" TextAlignment="Center" Controls:TextBoxHelper.Watermark="CEP Destino"></TextBox>
+                                    <Controls:ToggleSwitch Margin="15,0,0,0" Style="{StaticResource MahApps.Metro.Styles.ToggleSwitch.Win10}" ToolTip="Copiar para a área de processamento os campos: Nº Contrato, DR, Código STO, CEP Origem, CEP Destino"
+                                                           OnSwitchBrush="Green" OffSwitchBrush="red" OnLabel="Sim" OffLabel="Não" VerticalAlignment="Center"></Controls:ToggleSwitch>
+                                </StackPanel>
+                                
+                            </Grid>
+                        </Controls:MetroTabItem>
+
+                        <Controls:MetroTabItem Header="Layout" ToolTip="Definir Layout de Dados" Controls:TabControlHelper.UnderlineBrush="White">
+                            <Grid Margin="10,0,10,0">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="2"></RowDefinition>
+                                    <RowDefinition Height="20"></RowDefinition>
+                                    <RowDefinition Height="40"></RowDefinition>
+                                    <RowDefinition Height="5"></RowDefinition>
+                                    <RowDefinition Height="60"></RowDefinition>
+                                    <RowDefinition Height="5"></RowDefinition>
+                                    <RowDefinition Height="20"></RowDefinition>
+                                    <RowDefinition Height="40"></RowDefinition>
+                                    <RowDefinition Height="5"></RowDefinition>
+                                    <RowDefinition Height="20"></RowDefinition>
+                                    <RowDefinition Height="40"></RowDefinition>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"></ColumnDefinition>
+                                    <ColumnDefinition Width="2"></ColumnDefinition>
+                                    <ColumnDefinition Width="*"></ColumnDefinition>
+                                    <ColumnDefinition Width="2"></ColumnDefinition>
+                                    <ColumnDefinition Width="*"></ColumnDefinition>
+                                    <ColumnDefinition Width="2"></ColumnDefinition>
+                                    <ColumnDefinition Width="*"></ColumnDefinition>
+                                    <ColumnDefinition Width="2"></ColumnDefinition>
+                                    <ColumnDefinition Width="*"></ColumnDefinition>
+                                    <ColumnDefinition Width="2"></ColumnDefinition>
+                                    <ColumnDefinition Width="*"></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+
+                                <TextBlock Grid.Row="1" Grid.Column="0">Tipo de Arquivo</TextBlock>
+                                <ComboBox ToolTip="Escolha o tipo de Arquivo" x:Name="dpTipoArquivo" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="11" Controls:TextBoxHelper.ClearTextButton="True" VerticalContentAlignment="Center" VerticalAlignment="Top" HorizontalContentAlignment="Center" Controls:TextBoxHelper.Watermark="Escolha o tipo de Arquivo" SelectionChanged="dpTipoArquivo_SelectionChanged"/>
+
+                                <StackPanel x:Name="stkHeaderTrailler" Visibility="Visible" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="11" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Top">
+                                    <Controls:ToggleSwitch Style="{StaticResource MahApps.Metro.Styles.ToggleSwitch.Win10}" ToolTip="Ative caso a primeira linha do arquivo seja um cabeçalho" Header="Header" OnSwitchBrush="Green" OffSwitchBrush="red" OnLabel="Sim" OffLabel="Não" FontSize="11" FontFamily="Segoe UI" ></Controls:ToggleSwitch>
+                                    <Controls:ToggleSwitch Style="{StaticResource MahApps.Metro.Styles.ToggleSwitch.Win10}" ToolTip="Ative caso a última linha do  arquivo seja um Trailler" Margin="20,0,0,0" OffSwitchBrush="Red" OnSwitchBrush="Green" Header="Trailler" OnLabel="Sim" OffLabel="Não" FontSize="11" FontFamily="Segoe UI"  />
+                                </StackPanel>
+
+                                <TextBlock x:Name="tblckDelDelimitador" Visibility="Collapsed" Grid.Row="6" Grid.Column="2"  VerticalAlignment="Top" FontWeight="Bold">Delimitador</TextBlock>
+                                <TextBlock x:Name="tblckDelCep" Visibility="Collapsed" Grid.Row="6" Grid.Column="4" VerticalAlignment="Top" FontWeight="Bold">Nº Campo CEP</TextBlock>
+                                <TextBlock x:Name="tblckDelInicio" Visibility="Collapsed" Grid.Row="6" Grid.Column="6" VerticalAlignment="Top" FontWeight="Bold">Início</TextBlock>
+                                <TextBlock x:Name="tblckDelTamanho" Visibility="Collapsed" Grid.Row="6" Grid.Column="8" VerticalAlignment="Top" FontWeight="Bold">Tamanho</TextBlock>
+                                <ComboBox x:Name="cboxDelDelimitador" MinWidth="100" Controls:TextBoxHelper.ClearTextButton="True" ToolTip="Defina o delimitador" Visibility="Collapsed" Grid.Row="7" Grid.Column="2" BorderThickness="2" VerticalAlignment="Top" Width="80" HorizontalAlignment="Left" HorizontalContentAlignment="Center">
+                                    <ComboBoxItem Content=";"/>
+                                    <ComboBoxItem Content="|"/>
+                                    <ComboBoxItem Content="TAB"/>
+                                    <ComboBoxItem Content="#"/>
+                                </ComboBox>
+                                <TextBox x:Name="tboxDelCep" Visibility="Collapsed" ToolTip="Insira a localização campo CEP" Grid.Row="7" Grid.Column="4" BorderThickness="2" TextAlignment="Center" VerticalAlignment="Top" Controls:TextBoxHelper.Watermark="Obrigatório" Width="80" HorizontalAlignment="Left"></TextBox>
+                                <TextBox x:Name="tboxDelInicio" Visibility="Collapsed" ToolTip="Insira a posição inicial do campo CEP" Grid.Row="7" Grid.Column="6" BorderThickness="2" TextAlignment="Center" VerticalAlignment="Top" Controls:TextBoxHelper.Watermark="Obrigatório" Width="80" HorizontalAlignment="Left"></TextBox>
+                                <TextBox x:Name="tboxDelTamanho" Visibility="Collapsed" ToolTip="Insira o tamanho do campo CEP" Grid.Row="7" Grid.Column="8" BorderThickness="2" TextAlignment="Center" VerticalAlignment="Top" Controls:TextBoxHelper.Watermark="Maior que 7" Width="80" HorizontalAlignment="Left"></TextBox>
+
+                                <TextBlock x:Name="tblckMultRegPosChave" Visibility="Collapsed" Grid.Row="6" Grid.Column="4" HorizontalAlignment="Center" VerticalAlignment="Top" FontWeight="Bold">Posição Chave</TextBlock>
+                                <TextBlock x:Name="tblckMultRegMultChave" Visibility="Collapsed" Grid.Row="6" Grid.Column="6" HorizontalAlignment="Center" VerticalAlignment="Top" FontWeight="Bold">Chave</TextBlock>
+                                <TextBox x:Name="tboxMultRegPosChave" ToolTip="Insira a posição inicial da chave" Visibility="Collapsed" Grid.Row="7" Grid.Column="4" HorizontalAlignment="Center" TextAlignment="Center" VerticalAlignment="Top" Controls:TextBoxHelper.Watermark="Obrigatório" Width="80"></TextBox>
+                                <TextBox x:Name="tboxMultRegChave" ToolTip="Insira a chave" Visibility="Collapsed" Grid.Row="7" Grid.Column="6" HorizontalAlignment="Center"  TextAlignment="Center" VerticalAlignment="Top" Controls:TextBoxHelper.Watermark="Obrigatório" Width="80"></TextBox>
+
+                                <TextBlock x:Name="tblckFixoPos" Grid.Row="9" Grid.Column="4" Visibility="Collapsed" TextAlignment="Center" VerticalAlignment="Top" FontWeight="Bold">Posição CEP</TextBlock>
+                                <TextBlock x:Name="tblckFixoTamanho" Grid.Row="9" Grid.Column="6" Visibility="Collapsed" VerticalAlignment="Top" TextAlignment="Center" FontWeight="Bold" HorizontalAlignment="Center">Tamanho</TextBlock>
+                                <TextBox x:Name="tboxFixoPosCep" ToolTip="Insira a posição que o campo CEP começa" Visibility="Collapsed"  HorizontalAlignment="Center" Grid.Row="10" Grid.Column="4" TextAlignment="Center" VerticalAlignment="Top" Controls:TextBoxHelper.Watermark="Obrigatório" Width="80"></TextBox>
+                                <TextBox x:Name="tboxFixoTamanho" Visibility="Collapsed" Grid.Row="10" Grid.Column="6" TextAlignment="Center" VerticalAlignment="Top" Controls:TextBoxHelper.Watermark="Maior que 7" ToolTip="Insira o tamanho do campo CEP" Width="80" HorizontalAlignment="Center"></TextBox>
+                            </Grid>
+                        </Controls:MetroTabItem>
+                    </Controls:MetroAnimatedTabControl>
+                </Grid>
+            </Controls:MetroTabItem>
+            <Controls:MetroTabItem Header="PAC"></Controls:MetroTabItem>
+        </Controls:MetroAnimatedTabControl>
+
+        <Controls:MetroTabControl Grid.Row="2">
+            <Controls:MetroTabItem Header="Processamento">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="5"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="2"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="5"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="5"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="5"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="5"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <StackPanel IsEnabled="False" Grid.Row="1" Grid.Column="0"  Grid.ColumnSpan="3" VerticalAlignment="Center" HorizontalAlignment="Center" Orientation="Horizontal">
+                        <TextBox x:Name="txBoxProcessCodAdm" MinWidth="30" VerticalAlignment="Center" TextAlignment="Center" Controls:TextBoxHelper.Watermark="Cod. Administrativo"></TextBox>
+                        <TextBox x:Name="txBoxProcessEmpresa" Margin="10,0,0,0" MinWidth="400"  VerticalAlignment="Center" TextAlignment="Center" Controls:TextBoxHelper.Watermark="Empresa"></TextBox>
+                        <TextBox x:Name="txBoxProcessNumCartao" MinWidth="100" Margin="10,0,0,0" VerticalAlignment="Center" TextAlignment="Center" Controls:TextBoxHelper.Watermark="Nº Cartão"></TextBox>
+                    </StackPanel>
+                    <StackPanel Grid.Row="3" Grid.Column="0"  Grid.ColumnSpan="3" VerticalAlignment="Center" HorizontalAlignment="Center" Orientation="Horizontal">
+                        <TextBox x:Name="txBoxProcessNumContrato"  MinWidth="100" Controls:TextBoxHelper.ClearTextButton="True" VerticalAlignment="Center" TextAlignment="Center" Controls:TextBoxHelper.Watermark="Nº do Contrato"></TextBox>
+                        <TextBox x:Name="txBoxProcessDr" MinWidth="30" Controls:TextBoxHelper.ClearTextButton="True" Margin="10,0,0,0" VerticalAlignment="Center" TextAlignment="Center" Controls:TextBoxHelper.Watermark="DR"></TextBox>
+                        <TextBox x:Name="txBoxProcessCodSto" MinWidth="100" Controls:TextBoxHelper.ClearTextButton="True" Margin="10,0,0,0" VerticalAlignment="Center" TextAlignment="Center" Controls:TextBoxHelper.Watermark="Código STO"></TextBox>
+                        <TextBox x:Name="txBoxProcessCepOrigem" Controls:TextBoxHelper.ClearTextButton="True" MinWidth="100" Margin="10,0,0,0" VerticalAlignment="Center" TextAlignment="Center" Controls:TextBoxHelper.Watermark="CEP Origem"></TextBox>
+                        <TextBox x:Name="txBoxProcessCepDestino" MinWidth="100" Controls:TextBoxHelper.ClearTextButton="True" Margin="10,0,0,0" VerticalAlignment="Center" TextAlignment="Center" Controls:TextBoxHelper.Watermark="CEP Destino"></TextBox>
+                    </StackPanel>
+                    <StackPanel Grid.Row="5" Orientation="Horizontal" HorizontalAlignment="Center">
+                        <Controls:NumericUpDown x:Name="nUpDownNumeroLote" Width="140"  ToolTip="Nº do Lote" Controls:TextBoxHelper.WatermarkAlignment="Left" Controls:TextBoxHelper.Watermark="Nº do Lote" StringFormat= " {0:00000}" Maximum="99999" Minimum="1" VerticalAlignment="Center" Controls:TextBoxHelper.ClearTextButton="True"></Controls:NumericUpDown>
+                        <Controls:NumericUpDown x:Name="nUpDownPeso"  Margin="10,0,0,0" Width="150"  ToolTip="Peso em gramas" Controls:TextBoxHelper.WatermarkAlignment="Left" Controls:TextBoxHelper.Watermark="Peso g" StringFormat= " {0:000}g" Maximum="99999" Minimum="1" VerticalAlignment="Center" Controls:TextBoxHelper.ClearTextButton="True"></Controls:NumericUpDown>
+                        <DatePicker x:Name="dtPckProcessDataProcessamento" SelectedDate="{x:Static system:DateTime.Now}" Margin="10,0,0,0" VerticalAlignment="Center" 
+                                    Controls:TextBoxHelper.UseFloatingWatermark="True"  HorizontalContentAlignment="Center"  Controls:TextBoxHelper.Watermark="Data de Processamento" Controls:TextBoxHelper.WatermarkAlignment="Center"></DatePicker>
+                    </StackPanel>
+
+                    <!--<Controls:MetroProgressBar Margin="10" Height="10" Grid.Row="9" VerticalAlignment="Center" Controls:TextBoxHelper.Watermark="testse" Value="60" Maximum="100" Minimum="0"></Controls:MetroProgressBar>-->
+                    <Button Grid.Row="7" Click="Button_Click_1" Width="200" VerticalAlignment="Center">Processa</Button>
+                    
+                </Grid>
+            </Controls:MetroTabItem>
+        </Controls:MetroTabControl>
     </Grid>
-</Window>
+    
+</Controls:MetroWindow>
