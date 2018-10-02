@@ -9,8 +9,8 @@
         xmlns:local="clr-namespace:SistemaFac"
         
         mc:Ignorable="d"
-        Title="Sistema Fac" MinHeight="700"  MinWidth="800" ShowTitleBar="True" ShowIconOnTitleBar="True" WindowStartupLocation="CenterScreen"
-        BorderThickness="0" GlowBrush="Black" ResizeMode="CanResizeWithGrip" Height="645.6"              >
+        Title="Sistema Fac --- Desenvolvimento" MinHeight="700"  MinWidth="800" ShowTitleBar="True" ShowIconOnTitleBar="True" WindowStartupLocation="CenterScreen"
+        BorderThickness="0" GlowBrush="Black" ResizeMode="CanResizeWithGrip" Height="645.6">
 
     <Controls:MetroWindow.LeftWindowCommands>
         <Controls:WindowCommands>
