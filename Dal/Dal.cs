@@ -12,7 +12,7 @@ namespace Dal
 {
     public class AcessaDados
     {
-        public string connString = @"Data Source = C:\Users\andvi\Desktop\EMPRES.db;Password=Dezembro tera 31 dias";
+        public string connString = @"";
 
         public SQLiteConnection RetornaConexao(string conString)
         {
