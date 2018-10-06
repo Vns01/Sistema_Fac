@@ -26,17 +26,17 @@ namespace SistemaFac
 
             InitializeComponent();
 
-
             Msgm();
             var dataTable = new DataTable();
 
-            using (var conn = new SQLiteConnection(@"Data Source = C:\Users\andvi\Desktop\EMPRES.db;"))
+            using (var conn = new SQLiteConnection(@"Data Source = EMPRES.db;"))
             {
                 conn.Open();
-                
+
+                Debug.Write("");
+
                 if (conn.State == System.Data.ConnectionState.Open)
                 {
-                    
                     Debug.WriteLine("abriu");
 
                     using (var comm = new SQLiteCommand(conn))
@@ -232,11 +232,7 @@ namespace SistemaFac
 
         //private void ToggleSwitch_Click(object sender, RoutedEventArgs e)
         //{
-        //    txboxExibicaoDr.Text = "72";
-        //    txboxExibicaoNumContrato.Text = "111111";
-        //    txboxExibicaoCepOrigem.Text = "01000-000";
-        //    txboxExibicaoCepDestino.Text = "05000-000";
-        //    txboxExibicaoCodSto.Text = "0999999";
+    
         //}
     }
 
