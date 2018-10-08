@@ -4,10 +4,7 @@ using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using MahApps.Metro.Controls;
-using MahApps.Metro.Controls.Dialogs;
 using System.Diagnostics;
-using MahApps.Metro.IconPacks;
-using System.Threading.Tasks;
 using System.Data.SQLite;
 using System.Data;
 using System.ComponentModel;
@@ -22,14 +19,11 @@ namespace SistemaFac
     {
         public MainWindow()
         {
-
-
             InitializeComponent();
 
-            Msgm();
             var dataTable = new DataTable();
 
-            using (var conn = new SQLiteConnection(@"Data Source = EMPRES.db;"))
+            using (var conn = new SQLiteConnection(@"Data Source = Fac.db;"))
             {
                 conn.Open();
 
@@ -150,10 +144,7 @@ namespace SistemaFac
             tboxDelTamanho.Visibility = Visibility.Visible;
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            System.Diagnostics.Process.Start("http:siteprinter.com.br");
-        }
+        private void Button_Click(object sender, RoutedEventArgs e) =>  System.Diagnostics.Process.Start("http:siteprinter.com.br");
 
         private void btnText_Click(object sender, RoutedEventArgs e)
         {
@@ -173,7 +164,6 @@ namespace SistemaFac
             //        int.Parse(tboxDelInicio.Text), int.Parse(tboxDelTamanho.Text)));
 
             //}
-
          
         }
 
@@ -189,31 +179,9 @@ namespace SistemaFac
             //txBoxProcessEmpresa.Content = cboxExibicaoEmpresa.Items[cboxExibicaoEmpresa.SelectedIndex];
         }
 
-        private void Button_Click_1(object sender, RoutedEventArgs e)
-        {
-            Msgm();
-        }
-
-
 
         private async void Msgm()
         {
-            LoginDialogData result = await this.ShowLoginAsync("Autenticação", "Entre com suas Credenciais", new LoginDialogSettings { ColorScheme = this.MetroDialogOptions.ColorScheme, UsernameWatermark = "Login" });
-
-
-            while (result == null|| !(result.Username.Equals("Teste")))
-            {
-                await this.ShowMessageAsync("Erro de Autenticação","Usuario ou Senha Invalidos");
-                result = await this.ShowLoginAsync("Autenticação", "Entre com suas credenciais", new LoginDialogSettings { ColorScheme = this.MetroDialogOptions.ColorScheme, UsernameWatermark = "Login" });
-            }
-
-
-            if(result == null)
-            {
-
-            }
-
-
             //var CONTROLLER = await this.ShowMessageAsync("teste", "Processando", MessageDialogStyle.Affirmative, new MetroDialogSettings
             //{
             //    AnimateHide = false

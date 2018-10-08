@@ -238,7 +238,7 @@
                     </StackPanel>
 
                     <!--<Controls:MetroProgressBar Margin="10" Height="10" Grid.Row="9" VerticalAlignment="Center" Controls:TextBoxHelper.Watermark="testse" Value="60" Maximum="100" Minimum="0"></Controls:MetroProgressBar>-->
-                    <Button Grid.Row="7" Click="Button_Click_1" Width="200" VerticalAlignment="Center">Processar</Button>
+                    <Button Grid.Row="7" Width="200" VerticalAlignment="Center">Processar</Button>
                     <TextBox Grid.Row="9" Width="100" VerticalAlignment="Center">
                         <TextBox.DataContext>
                             <local:Contrato/>
