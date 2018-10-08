@@ -23,7 +23,7 @@ namespace SistemaFac
 
             var dataTable = new DataTable();
 
-            using (var conn = new SQLiteConnection(@"Data Source = Fac.db;"))
+            using (var conn = new SQLiteConnection(@"Data Source = Data\FAC.db;"))
             {
                 conn.Open();
 
@@ -46,6 +46,7 @@ namespace SistemaFac
                         //    Console.WriteLine("Nome do Cliente: {0}", row["Nome"]);
                         //}
                     }
+                    conn.Clone();
                 }
 
                 //    //cboxExibicaoEmpresa.DisplayMemberPath = "nome";
@@ -173,13 +174,6 @@ namespace SistemaFac
             gerenciamento.Show();
         }
 
-        private void cboxExibicaoEmpresa_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
-            //txBoxProcessEmpresa.Content = cboxExibicaoEmpresa.Items[cboxExibicaoEmpresa.SelectedIndex];
-        }
-
-
         private async void Msgm()
         {
             //var CONTROLLER = await this.ShowMessageAsync("teste", "Processando", MessageDialogStyle.Affirmative, new MetroDialogSettings
@@ -198,9 +192,14 @@ namespace SistemaFac
             // await controll.CloseAsync();
         }
 
+        private void MetroWindow_Closing(object sender, CancelEventArgs e)
+        {
+            App.Current.MainWindow.Close();
+        }
+
         //private void ToggleSwitch_Click(object sender, RoutedEventArgs e)
         //{
-    
+
         //}
     }
 

@@ -21,7 +21,7 @@ namespace SistemaFac
     /// </summary>
     public partial class Login : MetroWindow
     {
-        string con = @"Data Source = Fac.db;";
+        string con = @"Data Source = Data\FAC.db;";
         string ps = string.Empty;
         string us = string.Empty;
 
@@ -37,8 +37,8 @@ namespace SistemaFac
                 {
                     using (var comm = new SQLiteCommand(conn))
                     {
-                        comm.CommandText = "SELECT Nome, Senha FROM User where Nome=@Nome and Senha=@Senha";
-                        comm.Parameters.AddWithValue("@Nome", string.Format("{0}", tboxLogin.Text));
+                        comm.CommandText = "SELECT Login, Senha FROM User where Login=@Login and Senha=@Senha";
+                        comm.Parameters.AddWithValue("@Login", string.Format("{0}", tboxLogin.Text));
                         comm.Parameters.AddWithValue("@Senha", string.Format("{0}",tboxSenha.Password));
                         var reader = comm.ExecuteReader();
 
@@ -75,7 +75,7 @@ namespace SistemaFac
             var resultado = await this.ShowMessageAsync("", "Deseja encerra a aplicação ?", MessageDialogStyle.AffirmativeAndNegative, opcoes);
 
             if (resultado == MessageDialogResult.Affirmative)
-                this.Close();
+                App.Current.MainWindow.Close();
         }
     }
 }

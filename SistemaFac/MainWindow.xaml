@@ -10,7 +10,7 @@
         
         mc:Ignorable="d"
         Title="Sistema Fac" MinHeight="700"  MinWidth="800" ShowTitleBar="True" ShowIconOnTitleBar="True" WindowStartupLocation="CenterScreen"
-        BorderThickness="0" GlowBrush="Black" ResizeMode="CanResizeWithGrip" Height="645.6">
+        BorderThickness="0" GlowBrush="Black" ResizeMode="CanResizeWithGrip" Height="645.6" Closing="MetroWindow_Closing">
 
     <Controls:MetroWindow.LeftWindowCommands>
         <Controls:WindowCommands>
@@ -30,12 +30,16 @@
         <Grid.Resources>
             <local:Contrato x:Key="teste"></local:Contrato>
         </Grid.Resources>
-        
-      <Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="373*"/>
+            <ColumnDefinition Width="8*"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
             <RowDefinition Height="345"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
-       </Grid.RowDefinitions>
-        <Controls:MetroAnimatedTabControl TabStripPlacement="top"  Controls:TabControlHelper.Underlined="TabItems">
+        </Grid.RowDefinitions>
+        <Controls:MetroAnimatedTabControl TabStripPlacement="top"  Controls:TabControlHelper.Underlined="TabItems" Grid.ColumnSpan="2" Margin="0,0,-0.4,325.4" Grid.RowSpan="2">
             <Controls:MetroTabItem Header="FAC">
                 <Grid Margin="10">
                     <Controls:MetroAnimatedTabControl Controls:TabControlHelper.UnderlineBrush="White" Controls:TabControlHelper.Underlined="TabItems" Grid.Row="0" TabStripPlacement="Left" Margin="6,0,-6.4,0.4">
@@ -62,7 +66,7 @@
                                 </Grid.ColumnDefinitions>
 
                                 <ComboBox x:Name="cboxExibicaoEmpresa"  ToolTip="Selecione a Empresa" ItemsSource="{Binding}" HorizontalContentAlignment="Center" Controls:TextBoxHelper.ClearTextButton="True" 
-                                          Controls:TextBoxHelper.Watermark="Empresa" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="3" VerticalAlignment="Center" SelectionChanged="cboxExibicaoEmpresa_SelectionChanged" >
+                                          Controls:TextBoxHelper.Watermark="Empresa" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="3" VerticalAlignment="Center">
                                     <ComboBox.ItemTemplate>
                                         <DataTemplate>
                                             <StackPanel Orientation="Horizontal">
@@ -72,16 +76,16 @@
                                             </StackPanel>
                                         </DataTemplate>
                                     </ComboBox.ItemTemplate>
-                                 </ComboBox>
+                                </ComboBox>
 
                                 <ComboBox ToolTip="Selecione Código Administrativo do Contrato" HorizontalContentAlignment="Center" Controls:TextBoxHelper.ClearTextButton="True"
                                           Controls:TextBoxHelper.Watermark="Código Administrativo do Contrato" Grid.Column="0
                                           " Grid.Row="3" Grid.ColumnSpan="3" VerticalAlignment="Center">
                                 </ComboBox>
-                                
+
                                 <ComboBox ToolTip="Selecione Número do cartão de postagem" HorizontalContentAlignment="Center" VerticalAlignment="Center" Controls:TextBoxHelper.ClearTextButton="True"
                                           Controls:TextBoxHelper.Watermark="Número do Cartão de Postagem" Grid.Column="0
-                                          " Grid.Row="5" Grid.ColumnSpan="3" > 
+                                          " Grid.Row="5" Grid.ColumnSpan="3" >
                                 </ComboBox>
 
                                 <ComboBox ToolTip="Selecione o Produto que será processado" HorizontalContentAlignment="Center" VerticalAlignment="Center" Controls:TextBoxHelper.ClearTextButton="True"
@@ -100,10 +104,10 @@
                                         <ComboBox.ItemTemplate>
                                             <DataTemplate>
                                                 <StackPanel>
-                                                <TextBlock Text="{Binding LocalInicio}"></TextBlock>
-                                                <TextBlock Text="{Binding LocalFim}"></TextBlock>
-                                                <TextBlock Text="{Binding EstadualInicio}"></TextBlock>
-                                                <TextBlock Text="{Binding EstadualFim}">
+                                                    <TextBlock Text="{Binding LocalInicio}"></TextBlock>
+                                                    <TextBlock Text="{Binding LocalFim}"></TextBlock>
+                                                    <TextBlock Text="{Binding EstadualInicio}"></TextBlock>
+                                                    <TextBlock Text="{Binding EstadualFim}">
                                                  <TextBlock Text="{Binding NacionalInicio}"></TextBlock>
                                                 </TextBlock>
                                                 </StackPanel>
@@ -198,7 +202,7 @@
             <Controls:MetroTabItem Header="PAC"></Controls:MetroTabItem>
         </Controls:MetroAnimatedTabControl>
 
-        <Controls:MetroTabControl Grid.Row="2">
+        <Controls:MetroTabControl Grid.Row="1" Grid.ColumnSpan="2" Margin="0,0.2,-0.4,0.4">
             <Controls:MetroTabItem Header="Processamento">
                 <Grid>
                     <Grid.RowDefinitions>
@@ -221,7 +225,7 @@
                         <TextBox x:Name="txBoxProcessEmpresa" IsEnabled="False" Text="{Binding ElementName=cboxExibicaoEmpresa, Path=SelectedItem.Nome}" ToolTip="Empresa" Margin="10,0,0,0" MinWidth="400"  VerticalAlignment="Center" TextAlignment="Center" Controls:TextBoxHelper.Watermark="Empresa"></TextBox>
                         <TextBox x:Name="txBoxProcessNumCartao" ToolTip="Número do cartão" MinWidth="100" Margin="10,0,0,0" IsReadOnly="True" VerticalAlignment="Center" TextAlignment="Center" Controls:TextBoxHelper.Watermark="Nº Cartão"></TextBox>
                     </StackPanel>
-                    
+
                     <StackPanel Grid.Row="5" Grid.Column="0"  Grid.ColumnSpan="3" VerticalAlignment="Center" HorizontalAlignment="Center" Orientation="Horizontal">
                         <TextBox x:Name="txBoxProcessDr" Text="{Binding ElementName=txboxExibicaoDr, Path=Text, Mode=OneWaY}" ToolTip="DR" MinWidth="30" Controls:TextBoxHelper.ClearTextButton="True" Margin="10,0,0,0" VerticalAlignment="Center" TextAlignment="Center" Controls:TextBoxHelper.Watermark="DR"></TextBox>
                         <TextBox x:Name="txBoxProcessCodSto" ToolTip="Código STO" MinWidth="100" Text="{Binding ElementName=txboxExibicaoCodSto, Path=Text}" Controls:TextBoxHelper.ClearTextButton="True" Margin="10,0,0,0" VerticalAlignment="Center" TextAlignment="Center" Controls:TextBoxHelper.Watermark="Código STO"></TextBox>
@@ -230,7 +234,7 @@
                         <DatePicker x:Name="dtPckProcessDataPostagem" SelectedDate="{x:Static system:DateTime.Now}" Margin="10,0,0,0" VerticalAlignment="Center" 
                                     Controls:TextBoxHelper.UseFloatingWatermark="True"  HorizontalContentAlignment="Center"  Controls:TextBoxHelper.Watermark="Data de Postagem" Controls:TextBoxHelper.WatermarkAlignment="Center"></DatePicker>
                     </StackPanel>
-                    
+
                     <StackPanel Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Center">
                         <TextBox x:Name="txBoxProcessProduto" ToolTip="Produto" MinWidth="240" IsReadOnly="True" Margin="10,0,0,0" VerticalAlignment="Center" TextAlignment="Center" Controls:TextBoxHelper.Watermark="Produto"></TextBox>
                         <Controls:NumericUpDown x:Name="nUpDownNumeroLote" Margin="10,0,0,0" Width="140"  ToolTip="Nº do Lote" Controls:TextBoxHelper.WatermarkAlignment="Left" Controls:TextBoxHelper.Watermark="Nº do Lote" StringFormat= " {0:00000}" Maximum="99999" Minimum="1" VerticalAlignment="Center" Controls:TextBoxHelper.ClearTextButton="True"></Controls:NumericUpDown>
@@ -251,10 +255,10 @@
                             </Binding>
                         </TextBox.Text>
                     </TextBox>
-                    
+
                 </Grid>
             </Controls:MetroTabItem>
         </Controls:MetroTabControl>
     </Grid>
-    
+
 </Controls:MetroWindow>
