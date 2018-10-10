@@ -7,13 +7,13 @@
         xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
         xmlns:local="clr-namespace:SistemaFac"
         mc:Ignorable="d"
-        Title="Login" Height="450" Width="522.634" WindowStartupLocation="CenterScreen">
+        Title="Login" Height="450" Width="522.634" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
     <Grid Background="#FFB9E7C8">
         <Grid.RowDefinitions>
             <RowDefinition Height="200"></RowDefinition>
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
-        <iconPacks:PackIconFontAwesome HorizontalAlignment="Center"  VerticalAlignment="Center" Width="100" Height="100" Kind="UserRegular"></iconPacks:PackIconFontAwesome>
+        <iconPacks:PackIconFontAwesome HorizontalAlignment="Center" VerticalAlignment="Bottom" Width="100" Height="150" Kind="UserRegular"/>
         <StackPanel Grid.Row="1" HorizontalAlignment="Center" Margin="0,25">
             <StackPanel.Resources>
                 <Style TargetType="TextBlock">
@@ -29,7 +29,18 @@
             </StackPanel.Resources>
             <DockPanel>
                 <TextBlock>Usuario</TextBlock>
-                <TextBox x:Name="tboxLogin" Width="300" HorizontalAlignment="Left" Controls:TextBoxHelper.Watermark="Insira seu login" Controls:TextBoxHelper.ClearTextButton="True"></TextBox>
+                <TextBox x:Name="tboxLogin" Width="300"  HorizontalAlignment="Left" Controls:TextBoxHelper.Watermark="Insira seu login" Controls:TextBoxHelper.ClearTextButton="True">
+                    <TextBox.DataContext>
+                        <local:Acesso></local:Acesso>
+                    </TextBox.DataContext>
+                    <TextBox.Text>
+                        <Binding Path="Login" UpdateSourceTrigger="PropertyChanged" NotifyOnValidationError="True">
+                            <Binding.ValidationRules>
+                                <DataErrorValidationRule></DataErrorValidationRule>
+                            </Binding.ValidationRules>
+                        </Binding>
+                    </TextBox.Text>
+                </TextBox>
             </DockPanel>
             <DockPanel Margin="0,20,0,0">
                 <TextBlock>Senha</TextBlock>
@@ -39,7 +50,7 @@
                 <Button Width="100" Click="Button_Click" Margin="0,0,30,0">Login</Button>
                 <Button Width="100" Click="Button_Click_1" >Exit</Button>
             </StackPanel>
-         </StackPanel>
+        </StackPanel>
 
     </Grid>
 </Controls:MetroWindow>

@@ -168,12 +168,6 @@ namespace SistemaFac
          
         }
 
-        private void btnGerenciamento_Click(object sender, RoutedEventArgs e)
-        {
-            var gerenciamento = new Gerenciamento();
-            gerenciamento.Show();
-        }
-
         private async void Msgm()
         {
             //var CONTROLLER = await this.ShowMessageAsync("teste", "Processando", MessageDialogStyle.Affirmative, new MetroDialogSettings
